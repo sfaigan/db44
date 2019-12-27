@@ -1,0 +1,23 @@
+language: minimal
+services:
+  - docker
+
+script:
+  - docker build -t sfaigan/db44 .
+
+before_deploy:
+  - docker tag sfaigan/db44 registry.heroku.com/db44/web
+  - wget -q0- https://toolbelt.heroku.com/install.sh | sh
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+deploy:
+  provider: script
+  script:
+    heroku container:login;
+    docker push sfaigan/db44;
+    docker push registry.heroku.com/db44/web;
+    heroku container:push web --app db44;
+    heroku container:release web --app db44;
+  skip_cleanup: true
+  on:
+    branch: master

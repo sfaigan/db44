@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  style
+    include ../../public/stylesheets/login.css
+  .login-container
+    if session.user
+      p You are already logged in!
+    else
+      form.form-signin(method='POST', action='/session/authenticate')
+        img.logo.mb-4(src="/public/images/logo-large.png")
+        input.form-control.input-email(type="email" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email")
+        input.form-control.input-password(type="password" id="password" name="password" placeholder="Password")
+        .form-check
+          input.form-check-input(type="checkbox" name="inputLoginPersistence" id="inputLoginPersistence")
+          label.form-check-label(for="inputLoginPersistence") Remember me
+        a.btn.btn-outline-primary.register-btn(href="/users/register") Register
+        button.btn.btn-primary.login-btn(type="submit") Log in

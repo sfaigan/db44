@@ -1,0 +1,43 @@
+extends ../layout
+
+block content
+  - var isAdmin = (session.user && session.user.role === 'administrator');
+  .content-container.mr-4.ml-4
+    table.table.table-sm.order-table
+      thead
+        tr
+          th(scope='col') _id
+          th(scope='col') userId
+          th(scope='col') billingAddress
+          th(scope='col') shippingAddress
+          th(scope='col') paymentMethod
+          th(scope='col') status
+          th(scope='col') items
+          if isAdmin
+            th(scope='col')
+      tbody.order-table-body
+        each order in orders
+          tr.order-row
+            td
+              a(href=`/orders/${order._id}`)= order._id
+            td
+              a(href=`/users/${order.userId}`)= order.userId
+            td
+              .address-line.d-block #{order.billingAddress.firstName} #{order.billingAddress.lastName}
+              .address-line.d-block #{order.billingAddress.line1} #{order.billingAddress.line2}
+              .address-line.d-block #{order.billingAddress.city}, #{order.billingAddress.province}, #{order.billingAddress.postalCode}
+              .address-line.d-block #{order.billingAddress.country}
+            td
+              .address-line.d-block #{order.shippingAddress.firstName} #{order.shippingAddress.lastName}
+              .address-line.d-block #{order.shippingAddress.line1} #{order.shippingAddress.line2}
+              .address-line.d-block #{order.shippingAddress.city}, #{order.shippingAddress.province}, #{order.shippingAddress.postalCode}
+              .address-line.d-block #{order.shippingAddress.country}
+            td= order.paymentMethod
+            td= order.status
+            td
+              each item in order.items
+                .order-item.d-block #{item.productId} x#{item.quantity}
+            if isAdmin
+              td
+                a.btn.btn.btn-sm(href=`/orders/edit/${order._id}`): i.far.fa-edit
+                a.btn.btn.btn-sm(href=`/orders/delete/${order._id}`): i.far.fa-minus-square

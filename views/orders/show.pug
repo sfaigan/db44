@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+  .container
+    .row.justify-content-center
+      .col-md-6
+        .card.mb-3
+          h2.card-header Order Details
+          .order-details.card-body
+            h4.order-userId.card-title.mb-4 User ID: #{order.userId}
+            h5.mb-0 Billing Address:
+            .order-billing-address
+              .address-line.d-block #{order.billingAddress.firstName} #{order.billingAddress.lastName}
+              .address-line.d-block #{order.billingAddress.line1} #{order.billingAddress.line2}
+              .address-line.d-block #{order.billingAddress.city}, #{order.billingAddress.province}, #{order.billingAddress.postalCode}
+              .address-line.d-block #{order.billingAddress.country}
+            h5.mb-0.mt-4 Shipping Address:
+            .order-shipping-address
+              .address-line.d-block #{order.shippingAddress.firstName} #{order.shippingAddress.lastName}
+              .address-line.d-block #{order.shippingAddress.line1} #{order.shippingAddress.line2}
+              .address-line.d-block #{order.shippingAddress.city}, #{order.shippingAddress.province}, #{order.shippingAddress.postalCode}
+              .address-line.d-block #{order.shippingAddress.country}
+            h5.order-payment-method.mt-4.mb-4 Payment Method: #{order.paymentMethod}
+            h5.order-status.mb-4 Status: #{order.status}
+            h5.order-items.mb-0 Items:
+            each item in items
+              .order-item.d-block #{item.name} x#{item.quantity}
+            if session.user.role === 'administrator'
+              a.btn.btn-primary.btn-block.mt-4(href=`/orders/edit/${order._id}`) Edit

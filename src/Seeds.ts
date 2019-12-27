@@ -1,0 +1,283 @@
+import { ObjectId } from 'mongodb';
+
+export const usersCollection = [
+  {
+    _id: new ObjectId('5db0dc611c9d440000b50bbc'),
+    email: 'johndoe@example.com',
+    password: 'password123',
+    role: 'customer',
+    supplierId: null,
+  },
+  {
+    _id: new ObjectId('5db0dcab1c9d440000b50bbe'),
+    email: 'tim@phillipsbeer.com',
+    password: 'phillipsbeeristhebestbeer',
+    role: 'supplier',
+    supplierId: new ObjectId('5db0dd861c9d440000b50bc0'),
+  },
+  {
+    _id: new ObjectId('5db0def31c9d44000086460b'),
+    email: 'janedoe@example.com',
+    password: 'password123',
+    role: 'customer',
+    supplierId: null,
+  },
+  {
+    _id: new ObjectId('5db0df031c9d44000086460c'),
+    email: 'joeshmoe@example.com',
+    password: 'password123',
+    role: 'customer',
+    supplierId: null,
+  },
+  {
+    _id: new ObjectId('5db0df421c9d44000086460d'),
+    email: 'sean@hoynebrewing.ca',
+    password: 'seanisthebest',
+    role: 'supplier',
+    supplierId: new ObjectId('5db0f8141c9d440000b04775'),
+  },
+  {
+    _id: new ObjectId('5db0dfcf1c9d44000086460f'),
+    email: 'amanda@vibrewing.com',
+    password: 'vibrewing',
+    role: 'supplier',
+    supplierId: new ObjectId('5db0f82d1c9d440000b04776'),
+  },
+  {
+    _id: new ObjectId('5db68d091c9d440000d79889'),
+    email: 'admin@db44.com',
+    password: 'beersbeersbeers',
+    role: 'administrator',
+    supplierId: null,
+  },
+];
+export const suppliersCollection = [
+  {
+    _id: new ObjectId('5db0dd861c9d440000b50bc0'),
+    name: 'Phillips Brewing & Malting Co.',
+    address: {
+      firstName: 'Tim',
+      lastName: 'Smith',
+      line1: '2010 Government St.',
+      line2: '',
+      city: 'Victoria',
+      province: 'British Columbia',
+      country: 'Canada',
+      postalCode: 'V8T4P1',
+    },
+    phone: '12503801912',
+    website: 'https://phillipsbeer.com/',
+  },
+  {
+    _id: new ObjectId('5db0f8141c9d440000b04775'),
+    name: 'Hoyne Brewing Co.',
+    address: {
+      firstName: 'Sean',
+      lastName: 'Gallaway',
+      line1: '2740 Bridge Street',
+      line2: '101-',
+      city: 'Victoria',
+      province: 'British Columbia',
+      country: 'Canada',
+      postalCode: 'V8T5C5',
+    },
+    phone: '12505905758',
+    website: 'http://hoynebrewing.ca/',
+  },
+  {
+    _id: new ObjectId('5db0f82d1c9d440000b04776'),
+    name: 'Vancouver Island Brewing Co.',
+    address: {
+      firstName: 'Amanda',
+      lastName: 'Johnson',
+      line1: '2330 Government Street',
+      line2: '',
+      city: 'Victoria',
+      province: 'British Columbia',
+      country: 'Canada',
+      postalCode: 'V8T5G5',
+    },
+    phone: '12503610007',
+    website: 'http://vibrewing.com/',
+  },
+];
+export const productsCollection = [
+  {
+    _id: new ObjectId('5db0f4511c9d440000ce7e49'),
+    name: 'Dark Matter',
+    description:
+      'Deep inside the Hadron Collider physicists hurtle sub-atomic particles with lightning speed on a collision course with each other. They do so in the pursuit of pure science, in the hope of one day being able to unlock the mystery of the elusive unseen fabric upon which our universe is embroidered: Dark Matter.',
+    supplierId: new ObjectId('5db0f8141c9d440000b04775'),
+    stock: 600,
+    price: 4.99,
+    category: 'porter',
+  },
+  {
+    _id: new ObjectId('5db102a21c9d4400001c8047'),
+    name: 'Hoyne Pilsner',
+    description:
+      'On the third night, I handed my sweetie a tall slender Pilsner. Perfectly poured. While holding it up and gazing either at it, or through it at me, she said softly, “you are so fine to me.” It was hard to tell if she meant to be heard. “Ambiguity, thy Name is Woman”, I nearly uttered. Whether she was speaking to me, or to the beer, it was merely semantics. The deal was sealed.  I would make it my life”s work to make fine beer.',
+    supplierId: new ObjectId('5db0f8141c9d440000b04775'),
+    stock: 350,
+    price: 4.99,
+    category: 'pilsner',
+  },
+  {
+    _id: new ObjectId('5db103721c9d4400001c804b'),
+    name: 'Vienna',
+    description:
+      'This finely made Vienna amber lager is exquisite in taste, with Noble German Tettnang hops and smooth creamy maltiness.  Perfect for planning your next European trip.',
+    supplierId: new ObjectId('5db0f8141c9d440000b04775'),
+    stock: 500,
+    price: 4.99,
+    category: 'amber lager',
+  },
+  {
+    _id: new ObjectId('5db103dd1c9d4400001c804d'),
+    name: 'Helios',
+    description:
+      'In the tradition of the robust beers of the Ruhr district, this export golden lager is malt forward and moderately hopped.',
+    supplierId: new ObjectId('5db0f8141c9d440000b04775'),
+    stock: 500,
+    price: 4.99,
+    category: 'golden lager',
+  },
+  {
+    _id: new ObjectId('5db1041e1c9d4400001c804f'),
+    name: 'Alpha Acid IPA',
+    description:
+      'Introducing a new addition to the Hoyne Brewing Family, Alpha Acid IPA replaces Devil’s Dream IPA in the core lineup. Big additions of Idaho 7, El Dorado and Azacca make this hazy, tropical IPA extra juicy. Brewed with the addition of wheat in the North-Eastern style with a great balance of hops, malt and mouth feel.',
+    supplierId: new ObjectId('5db0f8141c9d440000b04775'),
+    stock: 500,
+    price: 4.99,
+    category: 'ipa',
+  },
+  {
+    _id: new ObjectId('5db104761c9d4400001c8051'),
+    name: 'Entre Nous',
+    description:
+      'Brewed with Belgian Witbier yeast, we added a generous extra handful, or two, or three….. of fresh tasty BC black cherries.  This wheat ale is soft on the palate with thirst-quenching fruity tanginess.  This lovely beer will be back next summer.',
+    supplierId: new ObjectId('5db0f8141c9d440000b04775'),
+    stock: 500,
+    price: 4.99,
+    category: 'wheat ale',
+  },
+  {
+    _id: new ObjectId('5db106171c9d4400001c8053'),
+    name: 'Wolf Vine',
+    description:
+      'Humulus Lupulus, wolf vine, or more commonly, the hop plant, shares with its namesake a rather interesting trait: after a decidedly unthreatening beginning to life, upon maturity each species stakes their claim. And with neither mercy nor conscience, will tirelessly strive for, and usually achieve, total territorial domination.',
+    supplierId: new ObjectId('5db0f8141c9d440000b04775'),
+    stock: 500,
+    price: 4.99,
+    category: 'pale ale',
+  },
+  {
+    _id: new ObjectId('5db1066f1c9d4400001c8055'),
+    name: 'Summer Haze Honey Hefe',
+    description:
+      'On a sunny summer day, just like today, the Great and Wonderful Oz set sail in his hot-air balloon.  As ballast, some say, his basket was loaded to the brim with Hoyne Hefeweizen.  After lift-off, his thirst gathered like a summer storm.  Quenching it, he lightened his load, and found himself carried delightfully away.  The rest, as they say, is his story.',
+    supplierId: new ObjectId('5db0f8141c9d440000b04775'),
+    stock: 500,
+    price: 4.99,
+    category: 'hefeweizen',
+  },
+  {
+    _id: new ObjectId('5db106cf1c9d4400001c8057'),
+    name: 'Down Easy Pale Ale',
+    description: 'No description',
+    supplierId: new ObjectId('5db0f8141c9d440000b04775'),
+    stock: 500,
+    price: 4.99,
+    category: 'pale ale',
+  },
+  {
+    _id: new ObjectId('5db1072b1c9d4400001c8059'),
+    name: 'Appleton E.S.B.',
+    description: 'No description',
+    supplierId: new ObjectId('5db0f8141c9d440000b04775'),
+    stock: 500,
+    price: 4.99,
+    category: 'esb',
+  },
+  {
+    _id: new ObjectId('5db1078c1c9d4400001c805b'),
+    name: 'Victoria Lager',
+    description:
+      'Brewed in the Dortmunder style, this golden export lager is a rich, full-bodied beer. A celebration of the place our brewery calls home, Victoria Lager is our way of sharing a little piece of the Island with you, no matter where you go.',
+    supplierId: new ObjectId('5db0f82d1c9d440000b04776'),
+    stock: 500,
+    price: 4.99,
+    category: 'golden lager',
+  },
+  {
+    _id: new ObjectId('5db108191c9d4400001c805d'),
+    name: 'Faller NorthWest Pale Ale',
+    description:
+      "This beer celebrates all those who've worked hard to make the Island what it is today. Inspired by classic northwest pale ales, it builds a history of its own with aromas of fresh pine and grapefruit, and a hearty malt finish.",
+    supplierId: new ObjectId('5db0f82d1c9d440000b04776'),
+    stock: 500,
+    price: 4.99,
+    category: 'pale ale',
+  },
+  {
+    _id: new ObjectId('5db108d21c9d4400001c805f'),
+    name: 'Island Lager',
+    description:
+      'Just like Vancouver Island, this beer is both completely unique and familiar at the same time. A simple, laid back lager made from premium pilsner malt and Island-grown hops.',
+    supplierId: new ObjectId('5db0f82d1c9d440000b04776'),
+    stock: 500,
+    price: 4.99,
+    category: 'lager',
+  },
+  {
+    _id: new ObjectId('5db1095b1c9d4400001c8061'),
+    name: 'Nanaimo Bar Porter',
+    description:
+      'This dessert-style Porter combines the many layers of the classic Nanaimo bar. Starting with chocolate on top, vanilla in the middle, and finally a base note of coconut with a decadent sweetness throughout. A venerable bake sale treat in a can. Chocolate, Vanilla, Coconut.',
+    supplierId: new ObjectId('5db0f82d1c9d440000b04776'),
+    stock: 500,
+    price: 4.99,
+    category: 'porter',
+  },
+  {
+    _id: new ObjectId('5db109c31c9d4400001c8063'),
+    name: 'Misthorn Aurora IPA',
+    description:
+      'This hop forward IPA features a trifecta of supporting flavours - sweet orange peel, star anise, and cinnamon, mirroring the three pinnacles that overlook its namesake.',
+    supplierId: new ObjectId('5db0f82d1c9d440000b04776'),
+    stock: 500,
+    price: 4.99,
+    category: 'ipa',
+  },
+  {
+    _id: new ObjectId('5db10b251c9d4400001c8065'),
+    name: 'Phoenix Gold',
+    description:
+      'Phoenix Gold Lager pours a rich, golden colour with a creamy white head. Crisp lager esters and medium bodied, this beer finishes clean and dry with a subtle bready malt character. The classics never die.',
+    supplierId: new ObjectId('5db0dd861c9d440000b50bc0'),
+    stock: 500,
+    price: 4.99,
+    category: 'golden lager',
+  },
+  {
+    _id: new ObjectId('5db10b911c9d4400001c8067'),
+    name: 'Blue Buck',
+    description:
+      'The Blue Buck is a legendary beast, featuring a robust, malt-forward body underpinned with crisp northwest hops. Well balanced and highly drinkable.',
+    supplierId: new ObjectId('5db0dd861c9d440000b50bc0'),
+    stock: 500,
+    price: 4.99,
+    category: 'ale',
+  },
+  {
+    _id: new ObjectId('5db10bf51c9d4400001c8069'),
+    name: 'Glitterbomb',
+    description:
+      'This hazy pale ale explodes with lush citrus and juicy fruit notes that sparkle across your palate. Pairs well with disco naps and scooby snacks.',
+    supplierId: new ObjectId('5db0dd861c9d440000b50bc0'),
+    stock: 500,
+    price: 4.99,
+    category: 'pale ale',
+  },
+];

@@ -1,0 +1,53 @@
+extends ../layout
+
+block content
+    style
+        include ../../public/stylesheets/store.css
+    .container
+        .row.justify-content-center
+            .col-md-6
+                    .card.first-card
+                        img.card-img-top.img-fluid(src='http://placehold.it/900x350' alt='Product Image')
+                        .card-body
+                            h2.product-name.card-title #{product.name}
+                            h6.card-subtitle.mb-2.text-muted
+                            a(href=`/suppliers/${product.supplier._id}`)= product.supplier.name
+                            p.text-in-card
+                                | #{product.description}
+                            h6.card-subtitle.mb-3.text-capitalize= product.category
+                            .text-warning.d-inline-block &starf; &starf; &starf; &starf; &star;
+                                    |             4.0 stars
+                            .float-right.d-inline-block $#{product.price}
+                        .card-footer
+                            form.form-add-to-cart(method='POST', action=`/cart/add/${product._id}?_method=PUT`)
+                                input.form-control.input-quantity.w-25(type="number" id="quantity" name="quantity" aria-describedby="quantityHelp" value=1 step="1" min=1)
+                                button.btn.btn-primary.float-right.w-50(type="submit") Add to Cart
+                    br
+        .row.justify-content-center
+            .col-md-6
+                    .card.second-card
+                        .card-header
+                            | Product Reviews
+                        .card-body
+                            p
+                                |  This is the best beer ever!!
+                            small.text-muted Posted by Anonymous on 21/11/19
+                            p
+                            span.text-warning &starf; &starf; &starf; &starf; &starf;
+                                |             5.0 stars
+                            hr
+                            p
+                                | Could be cheaper, but gets the job done.
+                            small.text-muted Posted by Anonymous on 5/4/19
+                            p
+                            span.text-warning &starf; &starf; &starf; &star; &star;
+                                |             3.0 stars
+                            hr
+                            p
+                                | Pretty good, I'd give it an 8/10!
+                            small.text-muted Posted by Anonymous on 1/9/19
+                            p
+                            span.text-warning &starf; &starf; &starf; &starf; &star;
+                                |             4.0 stars
+                            hr
+                            button.btn.btn-dark(href='#') Write a Review

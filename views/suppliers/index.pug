@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+  .content-container.mr-4.ml-4
+    table.table.table-sm.supplier-table
+      thead
+        tr
+          th(scope='col') _id
+          th(scope='col') name
+          th(scope='col') address
+          th(scope='col') phone
+          th(scope='col') website
+          th(scope='col')
+      tbody.supplier-table-body
+        each supplier in suppliers
+          tr.supplier-row
+            td
+              a(href=`/suppliers/${supplier._id}`)= supplier._id
+            td= supplier.name
+            td
+              .address-line.d-block #{supplier.address.firstName} #{supplier.address.lastName}
+              .address-line.d-block #{supplier.address.line1} #{supplier.address.line2}
+              .address-line.d-block #{supplier.address.city}, #{supplier.address.province}, #{supplier.address.postalCode}
+              .address-line.d-block #{supplier.address.country}
+            td= supplier.phone
+            td
+              a(href=supplier.website)= supplier.website
+            td
+              a.btn.btn.btn-sm(href=`/suppliers/edit/${supplier._id}`): i.far.fa-edit
+              a.btn.btn.btn-sm(href=`/suppliers/delete/${supplier._id}`): i.far.fa-minus-square

@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+  .container
+    .row.justify-content-center
+      .col-md-6
+        .card.mb-3
+          h2.card-header Add a Product
+          .card-body.text-dark
+            form.new-product-form(method='POST', action='/products')
+              label(for="name") Name:
+              input.product-name-input.form-control.mb-4(type="text" required='' id="name" name="name" placeholder="Enter name")
+              label(for="description") Description:
+              input.product-description-input.form-control.mb-4(type="text" required='' id="description" name="description" placeholder="Enter description")
+              label(for="stock") Stock:
+              input.product-stock-input.form-control.mb-4(type="number" required='' id="stock" name="stock" placeholder="Enter stock")
+              label(for="price") Price:
+              input.product-price-input.form-control.mb-4(type="text" required='' id="price" name="price" placeholder="Enter price")
+              label(for="category") Category:
+              input.product-category-input.form-control.mb-4(type="text" required='' id="category" name="category" placeholder="Enter category")
+              if session.user.role === 'administrator'
+                label(for="supplierId") supplierId:
+                input.product-supplierId-input.form-control.mb-4(type="text" required='' id="supplierId" name="supplierId" placeholder="Enter supplierId")
+              else
+                input.product-supplierId-input.form-control.mb-4(type="hidden" required='' id="supplierId" name="supplierId" value=session.user.supplierId)
+              button.btn.btn-primary.btn-block(type="submit") Submit

@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+    style
+        include ../../public/stylesheets/register.css
+    .register-container
+        form.form-register(method='POST', action='/users')
+            img.logo.mb-4(src="/public/images/logo-large.png")
+            input.form-control.notlast-input(type="email" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email")
+            input.form-control.notlast-input(type="password" id="password" name="password" placeholder="Password")
+            input.form-control.last-input(type="password" id="confirm_password" name="confirm_password" placeholder="Confirm password")
+            .form-check
+                input.form-check-input(type="checkbox" name="inputSupplier" id="inputSupplier" onclick="toggleSupplierIdInput()")
+                label.form-check-label(for="inputSupplier") Register as a Supplier
+                input.form-control.last-input(type="text" id="supplierId" name="supplierId" style='display:none' placeholder="Enter supplierId")
+            button.btn.btn-primary.login-btn(type="submit") Register
+    script
+        include ../../public/javascript/supplierRegistration.js

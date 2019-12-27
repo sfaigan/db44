@@ -1,0 +1,80 @@
+{
+  "users": {
+    "bsonType": "object",
+    "required": [
+      "email",
+      "role",
+      "password"
+    ],
+    "properties": {
+      "email": {
+        "bsonType": "string"
+      },
+      "role": {
+        "enum": [
+          "administrator",
+          "supplier",
+          "customer"
+        ]
+      },
+      "password": {
+        "bsonType": "string"
+      }
+    }
+  },
+  "products": {
+    "bsonType": "object",
+    "required": [
+      "name",
+      "description",
+      "stock",
+      "price",
+      "category",
+      "supplierId"
+    ],
+    "properties": {
+      "name": {
+        "bsonType": "string"
+      },
+      "description": {
+        "bsonType": "string"
+      },
+      "stock": {
+        "bsonType": "number"
+      },
+      "price": {
+        "bsonType": "number"
+      },
+      "category": {
+        "bsonType": "string"
+      },
+      "supplierId": {
+        "bsonType": "objectId"
+      }
+    }
+  },
+  "suppliers": {
+    "bsonType": "object",
+    "required": [
+      "name",
+      "address",
+      "phone",
+      "website"
+    ],
+    "properties": {
+      "name": {
+        "bsonType": "string"
+      },
+      "address": {
+        "bsonType": "object"
+      },
+      "phone": {
+        "bsonType": "string"
+      },
+      "website": {
+        "bsonType": "string"
+      }
+    }
+  }
+}
+

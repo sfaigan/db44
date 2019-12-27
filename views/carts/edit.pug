@@ -1,0 +1,62 @@
+extends ../layout
+
+block content
+  - var n = 0;
+  .pb-5
+    .container
+      .row
+        .col-lg-12.p-5.bg-white.rounded.shadow-sm.mb-5
+          div
+            form.form-cart(method='POST', action='/cart?_method=PUT')
+              table.table
+                thead
+                  tr
+                    th.border-0.bg-light(scope='col')
+                      .p-2.px-3.text-uppercase Product
+                    th.border-0.bg-light(scope='col')
+                      .p-2.text-uppercase Supplier
+                    th.border-0.bg-light(scope='col')
+                      .py-2.text-uppercase Price
+                    th.border-0.bg-light(scope='col')
+                      .py-2.text-uppercase Quantity
+                    th.border-0.bg-light(scope='col')
+                      .py-2.text-uppercase Remove
+                tbody
+                  each product in products
+                    - n++;
+                    tr.border-0(scope='row')
+                      input(type="hidden" name=`products[${n}][productId]` value=product.productId)
+                      th
+                        .p-2
+                          img.img-fluid.rounded.shadow-sm(src='http://placehold.it/70x70' alt='' width='70')
+                          .ml-3.d-inline-block.align-middle
+                            h5.mb-0
+                              a.text-dark.d-inline-block.align-middle(href='/store/' + product.productId)= product.name
+                            span.text-muted.font-weight-normal.font-italic.text-capitalize.d-block= product.category
+                      td.border-0.align-middle
+                        strong= product.supplierName
+                      td.border-0.align-middle
+                        strong= product.price
+                      td.border-0.align-middle
+                        input.form-control(type="number" name=`products[${n}][quantity]` value=product.quantity step="1" min=1)
+                      td.border-0.align-middle
+                        input(type="checkbox" name=`products[${n}][delete]`)
+              button.float-right.d-block.btn.btn-primary.btn-md(type='submit') Update
+        .col-lg-6
+          .border-0.bg-light.px-4.py-3.text-uppercase.font-weight-bold Order summary
+          .p-4
+            p.font-italic.mb-4 Shipping and additional costs are calculated based on values you have entered.
+            ul.list-unstyled.mb-4
+              li.d-flex.justify-content-between.py-3.border-bottom
+                strong.text-muted Order Subtotal
+                strong $#{cost}
+              li.d-flex.justify-content-between.py-3.border-bottom
+                strong.text-muted Shipping and handling
+                strong $0.00
+              li.d-flex.justify-content-between.py-3.border-bottom
+                strong.text-muted Tax
+                strong $0.00
+              li.d-flex.justify-content-between.py-3.border-bottom
+                strong.text-muted Total
+                h5.font-weight-bold $#{cost}
+            a.btn.btn-dark.rounded-pill.py-2.btn-block(href='/checkout') Proceed to checkout

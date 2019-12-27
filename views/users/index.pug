@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  .mr-4.ml-4
+    table.table.table-sm.users-table
+      thead.users-table-headers
+        tr
+          th(scope='col') _id
+          th(scope='col') email
+          th(scope='col') role
+          th(scope='col') supplierId
+          th(scope='col')
+      tbody.users-table-body
+        each user in users
+          tr.user-row
+            td
+              a(href=`/users/${user._id}`)= user._id
+            td= user.email
+            td= user.role
+            td
+              a(href=`/suppliers/${user.supplierId}`)= user.supplierId
+            td
+              a.btn.btn.btn-sm(href=`/users/edit/${user._id}`): i.far.fa-edit
+              a.btn.btn.btn-sm(href=`/users/delete/${user._id}`): i.far.fa-minus-square

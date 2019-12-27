@@ -1,0 +1,122 @@
+extends ../layout
+
+block content
+  .container
+    .py-5.text-center
+      h1= title
+    .row
+      .col-md-4.order-md-2.mb-4
+        h4.d-flex.justify-content-between.align-items-center.mb-3
+          span.text-muted Your cart
+          span.badge.badge-secondary.badge-pill= numItemsInCart
+        ul.list-group.mb-3
+          each product in products
+            li.list-group-item.d-flex.justify-content-between.lh-condensed
+              div
+                h6.my-0= product.name
+                small.text-muted Quantity: #{product.quantity}
+              span.text-muted= product.price
+          li.list-group-item.d-flex.justify-content-between
+            span Total (CAD)
+            strong= cost
+      .col-md-8.order-md-1
+        form(method='POST', action='/checkout?_method=PUT')
+          .billing-address-container
+            h4.mb-3 Billing Address
+            .row
+              .col-md-6.mb-3
+                label(for='billingAddressFirstName') First name
+                input#billingAddressFirstName.form-control(type='text' placeholder='' value='' required='' name='billingAddressFirstName')
+              .col-md-6.mb-3
+                label(for='billingAddressLastName') Last name
+                input#billingAddressLastName.form-control(type='text' placeholder='' value='' required='' name='billingAddressLastName')
+            .mb-3
+              label(for='billingAddressLine1') Address
+              input#billingAddressLine1.form-control(type='text' placeholder='1234 Main St' required='' name='billingAddressLine1')
+            .mb-3
+              label(for='billingAddressLine2')
+                | Address 2
+                span.text-muted (Optional)
+              input#billingAddressLine2.form-control(type='text' placeholder='Apartment or suite' name='billingAddressLine2')
+            .row
+              .col-md-3.mb-3
+                label(for='billingAddressCountry') Country
+                select#billingAddressCountry.custom-select.d-block.w-100(required='' name='billingAddressCountry')
+                  option(value='') Choose...
+                  option Canada
+              .col-md-3.mb-3
+                label(for='billingAddressProvince') Province
+                select#billingAddressProvince.custom-select.d-block.w-100(required='' name='billingAddressProvince')
+                  option(value='') Choose...
+                  option British Columbia
+              .col-md-3.mb-3
+                label(for='billingAddressCity') City
+                select#billingAddressCity.custom-select.d-block.w-100(required='' name='billingAddressCity')
+                  option(value='') Choose...
+                  option Victoria
+              .col-md-3.mb-3
+                label(for='billingAddressPostalCode') Postal Code
+                input#billingAddressPostalCode.form-control(type='text' placeholder='' required='' name='billingAddressPostalCode')
+          .shipping-address-container
+            h4.mb-3 Shipping Address
+            .row
+              .col-md-6.mb-3
+                label(for='shippingAddressFirstName') First name
+                input#shippingAddressFirstName.form-control(type='text' placeholder='' value='' required='' name='shippingAddressFirstName')
+              .col-md-6.mb-3
+                label(for='shippingAddressLastName') Last name
+                input#shippingAddressLastName.form-control(type='text' placeholder='' value='' required='' name='shippingAddressLastName')
+            .mb-3
+              label(for='shippingAddressLine1') Address
+              input#shippingAddressLine1.form-control(type='text' placeholder='1234 Main St' required='' name='shippingAddressLine1')
+            .mb-3
+              label(for='shippingAddressLine2')
+                | Address 2
+                span.text-muted (Optional)
+              input#shippingAddressLine2.form-control(type='text' placeholder='Apartment or suite' name='shippingAddressLine2')
+            .row
+              .col-md-3.mb-3
+                label(for='shippingAddressCountry') Country
+                select#shippingAddressCountry.custom-select.d-block.w-100(required='' name='shippingAddressCountry')
+                  option(value='') Choose...
+                  option Canada
+              .col-md-3.mb-3
+                label(for='shippingAddressProvince') Province
+                select#shippingAddressProvince.custom-select.d-block.w-100(required='' name='shippingAddressProvince')
+                  option(value='') Choose...
+                  option British Columbia
+              .col-md-3.mb-3
+                label(for='shippingAddressCity') City
+                select#shippingAddressCity.custom-select.d-block.w-100(required='' name='shippingAddressCity')
+                  option(value='') Choose...
+                  option Victoria
+              .col-md-3.mb-3
+                label(for='shippingAddressPostalCode') Postal Code
+                input#shippingAddressPostalCode.form-control(type='text' placeholder='' required='' name='shippingAddressPostalCode')
+          hr.mb-4
+          .custom-control.custom-checkbox
+            input#same-address.custom-control-input(type='checkbox')
+            label.custom-control-label(for='same-address') Shipping address is the same as my billing address (NYI)
+          .custom-control.custom-checkbox
+            input#save-info.custom-control-input(type='checkbox')
+            label.custom-control-label(for='save-info') Save this information for next time (NYI)
+          hr.mb-4
+          .paymentInformation
+            h4.mb-3 Payment
+            .row
+              .col-md-6.mb-3
+                label(for='creditCardName') Name on card
+                input#creditCardName.form-control(type='text' placeholder='' required='')
+                small.text-muted Full name as displayed on card
+              .col-md-6.mb-3
+                label(for='creditCardNumber') Credit card number
+                input#creditCardNumber.form-control(type='text' placeholder='' required='')
+            .row
+              .col-md-3.mb-3
+                label(for='creditCardExpiration') Expiration
+                input#creditCardExpiration.form-control(type='text' placeholder='' required='')
+              .col-md-3.mb-3
+                label(for='creditCardCVV') CVV
+                input#creditCardCVV.form-control(type='text' placeholder='' required='')
+          hr.mb-4
+          button.btn.btn-primary.btn-lg.btn-block(type='submit') Review order

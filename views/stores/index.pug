@@ -1,0 +1,78 @@
+extends ../layout
+
+block content
+  style
+    include ../../public/stylesheets/store.css
+  .container
+    .row
+      .col-lg-3
+        h1.my-4 Store
+        #filter_accordion.accordion.form
+          label Filter by...
+          form.form-add-to-cart(method='GET', action=`/store`)
+            .card
+              #headingOne.card-header
+                h2.mb-0
+                  button.btn.btn-link(type='button' data-toggle='collapse' data-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne')
+                    | Type
+              #collapseOne.collapse.show(aria-labelledby='headingOne' data-parent='#filter_accordion')
+                .card-body.form-group
+                  each category, index in categories
+                    .form-check
+                      input.category-check.form-check-input(id=`categories_${index}` name=`categories[${index}]` type='checkbox' value=category.name checked=(category.isSet))
+                      label.form-check-label.text-capitalize(for=`categories[${index}]`)=category.name
+            .card
+              #headingTwo.card-header
+                h2.mb-0
+                  button.btn.btn-link(type='button' data-toggle='collapse' data-target='#collapseTwo' aria-expanded='true' aria-controls='collapseTwo')
+                    | Brewery
+              #collapseTwo.collapse.show(aria-labelledby='headingTwo' data-parent='#filter_accordion')
+                .card-body.form-group
+                   each supplier, index in suppliers
+                     .form-check
+                       input.supplier-check.form-check-input(id=`suppliers_${index}` name=`suppliers[${index}]` type='checkbox' value=supplier._id checked=(supplier.isSet))
+                       label.form-check-label(for=`suppliers[${index}]`)=supplier.name
+            .card
+              .card-header
+                .div
+                  button.btn.btn-primary.btn-filter(type="submit")= 'Filter'
+                  a.btn.btn-secondary.btn-clear-filter(href='/store')= 'Clear'
+      .col-lg-9
+        //h1.my-4 Featured
+        #carousel_featured_products.carousel.slide.my-4(data-ride='carousel')
+          ol.carousel-indicators
+            li.active(data-target='#carousel_featured_products' data-slide-to='0')
+            li(data-target='#carousel_featured_products' data-slide-to='1')
+            li(data-target='#carousel_featured_products' data-slide-to='2')
+          .carousel-inner(role='listbox')
+            .carousel-item.active
+              img.d-block.img-fluid(src='http://placehold.it/900x350' alt='First slide')
+            .carousel-item
+              img.d-block.img-fluid(src='http://placehold.it/900x350' alt='Second slide')
+            .carousel-item
+              img.d-block.img-fluid(src='http://placehold.it/900x350' alt='Third slide')
+          a.carousel-control-prev(href='#carousel_featured_products' role='button' data-slide='prev')
+            span.carousel-control-prev-icon(aria-hidden='true')
+            span.sr-only Previous
+          a.carousel-control-next(href='#carousel_featured_products' role='button' data-slide='next')
+            span.carousel-control-next-icon(aria-hidden='true')
+            span.sr-only Next
+
+        .row
+          each product in products
+            .col-lg-4.col-md-6.mb-4
+              .card.h-100.product-card
+                a(href='/store/' + product._id)
+                  img.card-img-top(src='http://placehold.it/700x400' alt='')
+                .card-body
+                  h4.card-title.product-name
+                    a(href='/store/' + product._id)= product.name
+                  h5.product-price= '$'+product.price.toString()
+                  p.card-text.product-description= product.description
+                  p.card-text.product-category.text-capitalize= product.category
+                  p.card-text.product-supplier
+                    a(href=`/suppliers/${product.supplier._id}`)= product.supplier.name
+                .card-footer
+                  form.form-add-to-cart(method='POST', action=`/cart/add/${product._id}?_method=PUT`)
+                    input.form-control.input-quantity(type="number" id="quantity" name="quantity" aria-describedby="quantityHelp" value=1 step="1" min=1)
+                    button.btn.btn-primary.float-right(type="submit") Add to Cart

@@ -1,0 +1,37 @@
+{
+  "users": {
+    "required": [
+      "email",
+      "role",
+      "password"
+    ],
+    "unique": [
+      "email"
+    ]
+  },
+  "products": {
+    "required": [
+      "name",
+      "description",
+      "stock",
+      "price",
+      "category",
+      "supplierId"
+    ]
+  },
+  "orders": {
+    "required": [
+      "userId",
+      "status",
+      "items"
+    ]
+  },
+  "suppliers": {
+    "required": [
+      "name",
+      "address",
+      "phone",
+      "website"
+    ]
+  }
+}

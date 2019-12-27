@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+  .content-container.mr-4.ml-4
+    table.table.table-sm.products-table
+      thead.products-table-headers
+        tr
+          th(scope='col') _id
+          th(scope='col') supplierId
+          th(scope='col') name
+          th(scope='col') category
+          th(scope='col') price
+          th(scope='col') stock
+          th(scope='col')
+            a.btn.btn-sm(href='/products/new'): i.far.fa-plus-square
+      tbody.products-table-body
+        each product in products
+          tr.product-row
+            td
+              a(href=`/products/${product._id}`)= product._id
+            td
+              a(href=`/suppliers/${product.supplier._id}`)= product.supplier._id
+            td= product.name
+            td= product.category
+            td= "$" + product.price.toString()
+            td= product.stock.toString()
+            td
+              a.btn.btn-sm(href=`/products/edit/${product._id}`): i.far.fa-edit
+              a.btn.btn-sm(href=`/products/delete/${product._id}`): i.far.fa-minus-square

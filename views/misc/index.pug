@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+  .content-container.mr-4.ml-4
+    h1.display-4= title
+    if session.user
+      p You are logged in as #{session.user.email}.
+      if session.user.role === 'administrator'
+        p You are an #{session.user.role}.
+      else
+        p You are a #{session.user.role}.
+    else
+      p You are not logged in.

@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+  .container
+    .row.justify-content-center
+      .col-md-6
+        .card.mb-3
+          h2.card-header Edit Supplier
+          .card-body
+            form.edit-supplier-form(method='POST', action=`/suppliers/${supplier._id}?_method=PUT`)
+              label(for="name") Name:
+              input.form-control.mb-4(type="text" id="name" name="name" aria-describedby="name" value=supplier.name)
+              label(for="address") Address (JSON):
+              textarea.form-control.mb-4(type="text" id="address" name="address" aria-describedby="addressHelp")= `${JSON.stringify(supplier.address, null, 2)}`
+              label(for="phone") Phone Number:
+              input.form-control.mb-4(type="text" id="phone" name="phone" aria-describedby="phoneHelp" value=supplier.phone)
+              label(for="website") Website:
+              input.form-control.mb-4(type="text" id="website" name="website" aria-describedby="websiteHelp" value=supplier.website)
+              button.btn.btn-primary.btn-block(type="submit") Confirm
+

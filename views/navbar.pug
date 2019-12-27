@@ -1,0 +1,26 @@
+div
+  .navbar.d-flex.flex-column.flex-md-row.align-items-center.p-3.px-md-4.mb-3.bg-white.border-bottom.shadow-sm.top.sticky-top.fixed-top
+    h5.my-0.mr-md-auto.font-weight-normal: a(href="/") db44
+    nav.my-2.my-md-0.mr-md-3
+      a.p-2.text-dark(href='/store') Store
+      if session.user
+        if session.user.role === 'administrator'
+          a.p-2.text-dark(href='/products') Products
+          a.p-2.text-dark(href='/orders') Orders
+          a.p-2.text-dark(href='/users') Users
+          a.p-2.text-dark(href='/suppliers') Suppliers
+        if session.user.role === 'supplier'
+          a.p-2.text-dark(href='/products') Products
+          a.p-2.text-dark(href=`/suppliers/${session.user.supplierId}`) Supplier Page
+        unless session.user.role === 'supplier'
+          a.p-2.text-dark(href='/orders') My Orders
+    if session.user
+      a.user-email(href=`/users/${session.user._id}`)= session.user.email
+      unless session.user.role === 'supplier'
+        a.btn.btn-outline-primary.btn-cart(href='/cart')
+          i.fas.fa-shopping-cart
+          .cart-number= numItemsInCart
+      a.btn.btn-outline-primary.btn-logout(href='/session/logout') Log out
+    else
+      a.btn.btn-outline-primary.btn-register(href='/users/register') Register
+      a.btn.btn-outline-primary.btn-login(href='/session/login') Log in

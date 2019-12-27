@@ -1,0 +1,13 @@
+.input-quantity {
+    width: 40%;
+    float: left;
+}
+
+.btn-filter {
+    width: 40%;
+}
+
+.btn-clear-filter {
+    float: right;
+    width: 40%;
+}

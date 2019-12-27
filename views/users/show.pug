@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  .container
+    .row.justify-content-center
+      .col-md-6
+        .card.mb-3
+          h2.card-header User Details
+          .card-body
+            h5.user-email.card-title.mb-4 Email: #{user.email}
+            h5.user-id.mb-4 ID: #{user._id}
+            h5.user-role.mb-4 Role: #{user.role}
+            if user.role == 'supplier'
+              h5.supplier-id.mb-4 Supplier ID: #{user.supplierId}
+            a.btn.btn-primary.btn-block(href=`/users/edit/${user._id}`) Edit

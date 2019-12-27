@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+  .container
+    .row.justify-content-center
+      .col-md-6
+        .card.mb-3
+          h2.card-header Product Details
+          .card-body
+            h4.product-name.mb-4.card-title Name: #{product.name}
+            h5.mb-0 Description:
+            .product-description.mb-4.mt-0= product.description
+            h5.product-stock.mb-4 Stock: #{product.stock.toString()}
+            h5.product-price.mb-4 Price: #{product.price.toString()}
+            h5.product-category.mb-4.text-capitalize Category: #{product.category}
+            a.btn.btn-primary.btn-block(href=`/products/edit/${product._id}`) Edit
+

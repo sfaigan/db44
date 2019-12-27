@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  .container
+    .row.justify-content-center
+      .col-md-6
+        .card.mb-3
+          h2.card-header Edit Product
+          .card-body
+            form.edit-product-form(method='POST', action=`/products/${product._id}?_method=PUT`)
+              label(for="name") Name:
+              input.form-control.mb-4(type="text" id="name" name="name" required='' aria-describedby="nameHelp" value=product.name)
+              label(for="description") Description:
+              textarea.form-control.mb-4(id="description" name="description" required='' aria-describedby="descriptionHelp")=product.description
+              label(for="stock") Stock:
+              input.form-control.mb-4(type="text" id="stock" name="stock" required='' aria-describedby="stockHelp" value=product.stock.toString())
+              label(for="price") Price:
+              input.form-control.mb-4(type="text" id="price" name="price" required='' aria-describedby="priceHelp" value=product.price.toString())
+              label(for="category") Category:
+              input.form-control.mb-4.text-capitalize(type="text" id="category" required='' name="category" aria-describedby="categoryHelp" value=product.category)
+              button.btn.btn-primary.btn-block(type="submit") Submit
